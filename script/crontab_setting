@@ -1,0 +1,2 @@
+0 0-23/1 * * 1-7 python3 /home/junweigu/csdn-pv/script/crawl_csdn_pv_hour.py
+55 23 * * 1-7 python3 /home/junweigu/csdn-pv/script/crawl_csdn_pv_day.py
