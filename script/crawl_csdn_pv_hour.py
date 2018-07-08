@@ -25,10 +25,10 @@ if __name__ == "__main__":
           #Get the value by key
           str1 = dd.attrs["title"]
           #Get current time
-          timestr = time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+          timestr = time.strftime('%H',time.localtime(time.time()))
           daystr = time.strftime('%Y-%m-%d',time.localtime(time.time()))
           #6. Open file and save value
-          with open(r'/home/junweigu/csdn-pv/data/hour/'+ daystr + '_pv_hour.txt', 'a+') as f:
-            f.write(timestr + ", " + str1 + '\n')
+          with open(r'/home/junweigu/csdn-pv/data/hour/pv_hour.' + daystr + '.txt', 'a+') as f:
+            f.write(timestr + "," + str1 + '\n')
           #7. Stop
           break
