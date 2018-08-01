@@ -1,8 +1,10 @@
 # -*- coding: UTF-8 -*-
+# use python3
 from urllib import request
 from bs4 import BeautifulSoup
 import time
 import re
+import os
 if __name__ == "__main__":
     #1. Open the url by urllib
     req = request.Request("https://blog.csdn.net/weixin_40341116")
@@ -22,13 +24,16 @@ if __name__ == "__main__":
     for dd in dds:
         #Secondly, find the first node that have attributes
         if dd.attrs:
-          #Get the value by key
-          str1 = dd.attrs["title"]
-          #Get current time
-          timestr = time.strftime('%H',time.localtime(time.time()))
-          daystr = time.strftime('%Y-%m-%d',time.localtime(time.time()))
-          #6. Open file and save value
-          with open(r'/home/junweigu/csdn-pv/data/hour/pv_hour.' + daystr + '.txt', 'a+') as f:
-            f.write(timestr + "," + str1 + '\n')
-          #7. Stop
-          break
+            #Get the value by key
+            str1 = dd.attrs["title"]
+            #Get current time
+            timestr = time.strftime('%H',time.localtime(time.time()))
+            daystr = time.strftime('%Y-%m-%d',time.localtime(time.time()))
+            monthstr = time.strftime('%Y-%m',time.localtime(time.time()))
+            #6. Open file and save value
+            if not os.path.exists('/home/junweigu/csdn-pv/data/' + monthstr):
+                os.makedirs('/home/junweigu/csdn-pv/data/' + monthstr)
+            with open(r'/home/junweigu/csdn-pv/data/' + monthstr + '/pv_hour.' + daystr + '.txt', 'a+') as f:
+                f.write(timestr + "," + str1 + '\n')
+            #7. Stop
+            break
