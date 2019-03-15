@@ -20,6 +20,24 @@
 </html>
 
 <script>
+    // 生成所有日期
+    var startTime = new Date(2018, 6, 25).getTime();
+    var endTime = new Date().getTime();
+
+    function formatTime(time, spliter = '-') {
+        var date = new Date(time);
+        var year = date.getFullYear();
+        var month = (date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1);
+        var day = date.getDate() >= 10 ? date.getDate() : '0' + date.getDate();
+        return `${year}${spliter}${month}${spliter}${day}`
+    }
+
+    for (i = startTime; i <= endTime;) {
+        console.log(formatTime(i));
+        i += 24 * 60 * 60 * 1000;
+    }
+
+    // draw
     var day_options = {
         chart: {
             type: 'line'
@@ -49,7 +67,7 @@
     };
 
 
-    $.get('../data/pv_day.txt', function(data) {
+    $.get('../data/pv_day.txt', function (data) {
         // 分隔每一行
         var lines = data.split('\n');
 
@@ -102,7 +120,7 @@
     };
 
 
-    $.get('../data/hour/pv_hour.2018-07-16.txt', function(data) {
+    $.get('../data/hour/pv_hour.2018-07-16.txt', function (data) {
         // 分隔每一行
         var lines = data.split('\n');
 
@@ -155,7 +173,7 @@
 				line: {
 						dataLabels: {
 								// 开启数据标签
-								enabled: true          
+								enabled: true
 						},
 						// 关闭鼠标跟踪，对应的提示框、点击事件会失效
 						enableMouseTracking: false
