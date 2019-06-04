@@ -1,19 +1,17 @@
 # -*- coding: UTF-8 -*-
 # use python3
-from urllib import request
+import requests
 from bs4 import BeautifulSoup
 import time
 import re
 import os
 if __name__ == "__main__":
-    #1. Open the url by urllib
-    req = request.Request("https://blog.csdn.net/weixin_40341116")
-    req.add_header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36")
-    response = request.urlopen(req)
+    #1. Set url
+    url = "https://blog.csdn.net/weixin_40341116"
     #2. Receive the response
-    html = response.read()
+    res = requests.get(url)
     #3. Decode to fromat a human readable heml string
-    html = html.decode("utf-8")
+    res.encoding = 'utf-8'
     #4. Parser the string 
     soup = BeautifulSoup(html,"html.parser")
     #5. According to view the source file of the aim page in firefox,
